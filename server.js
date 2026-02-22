@@ -1,3 +1,4 @@
+require('dotenv').config(); // MUST be at the very top
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -5,16 +6,8 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// --- IMPORTANT ---
-// Replace this with your actual MongoDB connection string.
-// For local MongoDB: 'mongodb://localhost:27017/carbon_footprint_db'
-// For MongoDB Atlas: Your Atlas connection string
-const mongoURI = 'mongodb://localhost:27017/carbon_footprint_db';
-
+// Use the secret variable from your .env file
+const mongoURI = process.env.MONGO_URI;
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
