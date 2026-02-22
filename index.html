@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Carbon Footprint Calculator</title>
+
+    <!-- THIS LINE IS CRUCIAL - MAKE SURE IT IS EXACTLY LIKE THIS -->
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Introductory View (Active by default) -->
+    <div id="intro-view" class="view active">
+        <video id="video-bg" autoplay loop muted playsinline>
+            <source src="background-video.mp4" type="video/mp4">
+        </video>
+        <div class="container">
+            <h1>Understand Your Impact</h1>
+            <p class="intro-text">Calculating your carbon footprint is the first step towards making a real difference.</p>
+            <blockquote class="quote">"The future of humanity and indeed all life on earth now depends on us."<cite>– Sir David Attenborough</cite></blockquote>
+            <button class="btn btn-large" id="start-btn">Let's Get Started</button>
+            <button class="btn btn-secondary" id="intro-history-btn">View History</button>
+        </div>
+    </div>
+
+    <!-- Calculator View -->
+    <div id="calculator-view" class="view">
+        <div class="container">
+            <header>
+                <h1>Your Environmental Snapshot</h1>
+                <p>Answer a few questions to understand your carbon footprint.</p>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="progress-bar"></div>
+                </div>
+            </header>
+            <hr class="divider">
+            <main>
+                <form id="carbon-form">
+                    <fieldset class="form-step active">
+                        <h2><i class="fas fa-home"></i> Household Energy</h2>
+                        <div class="form-group"><label for="electricity">Monthly Electricity Bill (in ₹)</label><input type="number" id="electricity" placeholder="e.g., 1500" required><span class="error-message">This field is required.</span></div>
+                        <div class="form-group"><label for="cylinders">Yearly LPG Cylinders</label><input type="number" id="cylinders" placeholder="e.g., 7" required><span class="error-message">This field is required.</span></div><button type="button" class="btn btn-next">Next <i class="fas fa-arrow-right"></i></button></fieldset>
+                    <fieldset class="form-step">
+                        <h2><i class="fas fa-route"></i> Personal Travel</h2>
+                        <div class="form-group"><label for="travel-distance">Monthly travel Distance (km)</label><input type="number" id="car-distance" placeholder="e.g., 500" required><span class="error-message">This field is required.</span></div>
+                        <div class="form-group"><label for="domestic-flights">Yearly Domestic Flights</label><input type="number" id="domestic-flights" placeholder="e.g., 4" required><span class="error-message">This field is required.</span></div>
+                        <div class="form-group"><label for="international-flights">Yearly International Flights</label><input type="number" id="international-flights" placeholder="e.g., 1" required><span class="error-message">This field is required.</span></div>
+                        <div class="button-group"><button type="button" class="btn btn-prev"><i class="fas fa-arrow-left"></i> Previous</button><button type="submit" class="btn">Calculate My Footprint</button></div>
+                    </fieldset>
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <!-- Results View -->
+    <div id="results-view" class="view">
+        <div class="container">
+            <h2>Your Annual Footprint</h2>
+            <p id="total-footprint-value" class="footprint-value">0.00</p>
+            <p class="unit">tonnes of CO2e</p>
+            <div class="comparison">
+                <p>The average for India is ~1.9 tonnes. <span id="comparison-text"></span></p>
+            </div>
+            <div class="chart-container"><canvas id="footprint-chart"></canvas></div>
+            <div class="tips-section">
+                <h3>Personalized Tips</h3>
+                <ul id="personalized-tips"></ul>
+            </div>
+            <div class="button-group">
+                <button class="btn" id="recalculate-btn">Calculate Again</button>
+                <button class="btn btn-secondary" id="results-history-btn">View History</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- History View -->
+    <div id="history-view" class="view">
+        <div class="container">
+            <h2>Your Recent History</h2>
+            <p class="intro-text">Compare your last 5 carbon footprint calculations.</p>
+            <div class="chart-container"><canvas id="history-chart"></canvas></div>
+            <div id="history-list"></div>
+            <button class="btn" id="history-back-btn">Back</button>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loader" class="view">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
